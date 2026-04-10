@@ -20,6 +20,10 @@ def manage_computers():
             "brand": request.form.get('brand'),
             "model": request.form.get('model')
         }
+        # Validar campos requeridos
+        if not all([data['serial'], data['brand'], data['model']]):
+            flash("Todos los campos son requeridos", "danger")
+            return redirect(url_for('main.manage_computers'))
         AssetService.add_computer(data)
         return redirect(url_for('main.manage_computers'))
     
@@ -34,6 +38,10 @@ def manage_campers():
             "name": request.form.get('name'),
             "email": request.form.get('email')
         }
+        # Validar campos requeridos
+        if not all([data['id'], data['name'], data['email']]):
+            flash("Todos los campos son requeridos", "danger")
+            return redirect(url_for('main.manage_campers'))
         AssetService.add_camper(data)
         return redirect(url_for('main.manage_campers'))
     
@@ -44,6 +52,11 @@ def manage_campers():
 def assign_asset():
     camper_id = request.form.get('camper_id')
     computer_id = request.form.get('computer_id')
+    
+    # Validar campos requeridos
+    if not camper_id or not computer_id:
+        flash("Debe seleccionar un camper y un computador", "danger")
+        return redirect(url_for('main.index'))
     
     success, message = AssetService.create_assignment(camper_id, computer_id)
     if success:
