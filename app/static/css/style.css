@@ -1,0 +1,49 @@
+:root {
+    --campus-blue: #002b5b;
+    --campus-yellow: #ffc107;
+}
+
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+.navbar { border-bottom: 3px solid var(--campus-yellow); }
+
+.card { border: none; transition: transform 0.2s; }
+.card:hover { transform: translateY(-5px); }
+
+.status-badge {
+    padding: 0.5em 1em;
+    border-radius: 50px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+}
+
+/* Ajustes para móviles (Pantallas menores a 768px) */
+@media (max-width: 768px) {
+    .btn {
+        padding: 12px; /* Botones más grandes para dedos */
+        width: 100%;    /* Botones a lo ancho en móviles */
+        margin-bottom: 5px;
+    }
+    
+    h2 { font-size: 1.5rem; }
+    
+    /* Evitar que las celdas se vean muy apretadas */
+    .table td, .table th {
+        white-space: nowrap; 
+        font-size: 0.9rem;
+    }
+}
+
+/* Forzar que el serial y el estado siempre estén en una línea */
+td {
+    white-space: nowrap;
+}
+
+/* En móviles muy pequeños, reducir el padding de las celdas */
+@media (max-width: 576px) {
+    .table td, .table th {
+        padding: 0.5rem 0.25rem;
+        font-size: 0.85rem;
+    }
+}
