@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h2>Dashboard de Control de Activos</h2>
+        <p class="text-muted">Resumen del estado actual de los equipos en Cajasan.</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card shadow-sm">
+            <div class="card-header bg-white">
+                <h5 class="card-title mb-0">Estado de Inventario</h5>
+            </div>
+            <div class="table-responsive">
+    <table class="table table-hover align-middle">
+        <thead class="table-light">
+            <tr>
+                <th class="d-none d-md-table-cell">ID</th>
+                <th>Serial</th>
+                <th>Marca/Modelo</th>
+                <th>Estado</th>
+                <th class="text-end">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pc in computers %}
+            <tr>
+                <td class="d-none d-md-table-cell"><code>{{ pc.id }}</code></td>
+                <td><strong>{{ pc.serial }}</strong></td>
+                <td>{{ pc.brand }} {{ pc.model }}</td>
+                <td>
+                    <span class="badge {% if pc.status == 'disponible' %}bg-success{% elif pc.status == 'asignado' %}bg-warning{% else %}bg-danger{% endif %}">
+                        {{ pc.status | upper }}
+                    </span>
+                </td>
+                <td class="text-end">
+                    {% if pc.status == 'disponible' %}
+                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modalAsignar{{ pc.id }}">
+                        <i class="bi bi-plus-circle"></i> <span class="d-none d-sm-inline">Asignar</span>
+                    </button>
+                    {% elif pc.status == 'asignado' %}
+                    <a href="/return/{{ pc.id }}" class="btn btn-sm btn-outline-danger">
+                        <i class="bi bi-arrow-return-left"></i> <span class="d-none d-sm-inline">Devolver</span>
+                    </a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+        </div>
+    </div>
+</div>
+{% for pc in computers %}
+{% if pc.status == 'disponible' %}
+<div class="modal fade" id="modalAsignar{{ pc.id }}" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="/assign" method="POST" class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Asignar Equipo: {{ pc.serial }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="computer_id" value="{{ pc.id }}">
+                <div class="mb-3">
+                    <label class="form-label">Seleccionar Camper Responsable</label>
+                    <select name="camper_id" class="form-select" required>
+                        <option value="" selected disabled>Elija un camper...</option>
+                        {% for camper in campers %}
+                        <option value="{{ camper.id }}">{{ camper.name }} ({{ camper.id }})</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <p class="text-muted small">Al asignar, el estado del equipo cambiará automáticamente a "ASIGNADO".</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-success">Confirmar Asignación</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endif %}
+{% endfor %}
+{% endblock %}
