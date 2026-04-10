@@ -1,0 +1,16 @@
+[
+    {
+        "serial": "CAMP-002",
+        "brand": "Lenovo",
+        "model": "ThinkPad",
+        "id": "2c48c184",
+        "status": "asignado"
+    },
+    {
+        "serial": "CAMP-1208",
+        "brand": "ASUS",
+        "model": "M409D",
+        "id": "d31713db",
+        "status": "disponible"
+    }
+]
