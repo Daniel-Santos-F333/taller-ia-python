@@ -4,6 +4,20 @@
         "camper_id": "1098",
         "computer_id": "2c48c184",
         "assignment_date": "2026-04-09T22:56:16.082341",
+        "return_date": "2026-04-10T06:58:21.851979"
+    },
+    {
+        "id": "da690ed8",
+        "camper_id": "1005331246",
+        "computer_id": "d31713db",
+        "assignment_date": "2026-04-10T06:58:33.502966",
+        "return_date": null
+    },
+    {
+        "id": "54c872a9",
+        "camper_id": "12345",
+        "computer_id": "2c48c184",
+        "assignment_date": "2026-04-10T09:06:38.600821",
         "return_date": null
     }
 ]

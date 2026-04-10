@@ -11,6 +11,20 @@
         "brand": "ASUS",
         "model": "M409D",
         "id": "d31713db",
+        "status": "asignado"
+    },
+    {
+        "serial": "CAMP-001",
+        "brand": "Asus",
+        "model": "M409D",
+        "id": "ff710e87",
+        "status": "disponible"
+    },
+    {
+        "serial": "CAMP-001",
+        "brand": "Asus",
+        "model": "M409D",
+        "id": "b59eb74b",
         "status": "disponible"
     }
 ]
