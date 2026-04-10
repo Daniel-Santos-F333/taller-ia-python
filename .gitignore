@@ -19,7 +19,7 @@ ENV/
 # Si deseas que el profesor reciba el JSON con datos de prueba, 
 # COMENTA las siguientes líneas con un # al inicio. 
 # Si quieres que la carpeta de datos esté vacía en GitHub, déjalas así:
-data/*.json
+# data/*.json
 
 # --- Archivos de sistema ---
 # Archivos basura generados por Windows
